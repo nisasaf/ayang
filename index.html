@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <title>Untuk Ayang</title>
+</head>
+<body>
+  <div id="wrapper">
+    <audio id="myaudio" controls autoplay loop hidden>
+      <source src="music/cara-bahagia.mp3" type="audio/mp3">
+    </audio>
+    <!-- <div class="curtain-left"></div>
+    <div class="curtain-right"></div> -->
+    <div class="d-block button-wrapper text-center m-auto">
+      <button id="click-me" class="d-block btn btn-primary btn-lg rounded-pill shadow">Klik di sini!</button>
+      <!-- <h1 id="closing-icon" class="animated fadeInDown closing-icon-delay">&#128151;</h1> -->
+      <h2 id="confession" class="d-none mb-4 animated fadeInDown">Aku sayang kamu &#128151;</h2>
+      <div id="envelope" class="d-none">
+        <a href="javascript:void(0)"><img src="img/envelope.jpg" width="80"></a>
+        <small class="d-block mt-2 fw-bold">Buka, ya!</small>
+      </div>
+    </div>
+  </div>
+  <footer class="d-block text-center">
+      <p class="m-0">Dibuat dengan <a href="javascript:void(0)" id="canvas" class="text-decoration-none">&#128151;</a> oleh aku, untuk ayang</p>
+    </footer>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap-js/bootstrap.min.js"></script>
+<script src="js/sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').on('click', function() {
+      $('#myaudio')[0].play()
+    })
+
+    $('#click-me').removeClass('d-none')
+    $('#confession').removeClass('d-block')
+    $('#envelope').removeClass('d-block')
+
+    $('#click-me').on('click', function() {
+      Swal.fire({
+        title: 'Halo, ayang',
+        text: "Aku punya pertanyaan nih buat kamu",
+        icon: 'question',
+        showCancelButton: false,
+        confirmButtonText: 'OK',
+        background: '#fff url(img/trees.png)',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: 'Jawab yang jujur ya!',
+            text: ':)',
+            confirmButtonText: 'OK',
+            background: '#fff url(img/trees.png)',
+          }).then((result2) => {
+            if (result2.isConfirmed) {
+              Swal.fire({
+                title: 'Awas aja kalo boong!',
+                icon: 'error',
+                confirmButtonText: 'Iya',
+                background: '#fff url(img/trees.png)'
+              }).then((result3) => {
+                if (result3.isConfirmed) {
+                  (async () => {
+                    const { value: name } = await Swal.fire({
+                      title: 'Masukin nama kamu dulu',
+                      input: 'text',
+                      confirmButtonText: 'OK',
+                      background: '#fff url(img/trees.png)',
+                    })
+                    if (name) {
+                      Swal.fire({
+                        title: `${name} sayang ga sama aku?`,
+                        confirmButtonText: 'Sayang',
+                        showCancelButton: true,
+                        cancelButtonText: 'Ga',
+                        cancelButtonColor: '#db1825',
+                        background: '#fff url(img/trees.png)'
+                      }).then((result3) => {
+                        if (result3.isConfirmed) {
+                          Swal.fire({
+                            title: `Aku juga sayang banget sama ${name}`,
+                            confirmButtonText: 'OK',
+                            background: '#fff url(img/trees.png)'
+                          }).then((result4) => {
+                            if (result4.isConfirmed) {
+                              Swal.fire({
+                                title: 'Seberapa sayangnya sih?',
+                                text: 'Antara 1 - 100 ya',
+                                icon: 'question',
+                                input: 'range',
+                                background: '#fff url(img/trees.png)',
+                                inputAttributes: {
+                                  min: 0,
+                                  max: 100,
+                                  step: 1
+                                },
+                                inputValue: 0
+                              }).then((result5) => {
+                                if (result5.value >= 100) {
+                                  Swal.fire({
+                                    title: `Makasih ya, ${name}. Udah sayang sama aku ${result5.value}%`,
+                                    text: `Sayang ${name} banyak-banyak!`,
+                                    background: '#fff url(img/trees.png)',
+                                    backdrop: `
+                                      rgb(0 0 123 / 15%)
+                                      url("img/nyan-cat.gif")
+                                      left top
+                                      no-repeat
+                                    `,
+                                    confirmButtonText: 'OK'
+                                  }).then((result6) => {
+                                    if (result6.isConfirmed) {
+                                      Swal.fire({
+                                        title: `Sekarang, ${name} kangen ga sama aku?`,
+                                        confirmButtonText: 'Kangen :(',
+                                        showCancelButton: true,
+                                        cancelButtonText: 'Ga!',
+                                        background: '#fff url(img/trees.png)',
+                                        cancelButtonColor: '#db1825'
+                                      }).then((result7) => {
+                                        if (result7.isConfirmed) {
+                                          Swal.fire({
+                                            title: `Huhu.. aku juga kangen sama ${name} :(`,
+                                            background: '#fff url(img/trees.png)',
+                                            confirmButtonText: 'OK'
+                                          }).then((result8) => {
+                                            if (result8.isConfirmed) {
+                                              Swal.fire({
+                                                title: 'Terakhir deh sayang',
+                                                background: '#fff url(img/trees.png)',
+                                                confirmButtonText: 'OK'
+                                              }).then((result9) => {
+                                                if (result9.isConfirmed) {
+                                                  Swal.fire({
+                                                    title: `Coba sekarang ${name} klik ikon hati di bagian paling bawah`,
+                                                    background: '#fff url(img/trees.png)',
+                                                    confirmButtonText: 'OK'
+                                                  })
+                                                }
+                                              })
+                                            }
+                                          })
+                                        } else {
+                                          Swal.fire({
+                                            title: `Kok gitu sih? aku kangen banget sama ${name}, tauuu :(`,
+                                            background: '#fff url(img/trees.png)',
+                                            confirmButtonText: 'OK'
+                                          }).then((result26) => {
+                                            if (result26.isConfirmed) {
+                                              Swal.fire({
+                                                title: 'Terakhir deh sayang',
+                                                background: '#fff url(img/trees.png)',
+                                                confirmButtonText: 'OK'
+                                              }).then((result27) => {
+                                                if (result27.isConfirmed) {
+                                                  Swal.fire({
+                                                    title: `Coba sekarang ${name} klik ikon hati di bagian paling bawah`,
+                                                    background: '#fff url(img/trees.png)',
+                                                    confirmButtonText: 'OK'
+                                                  })
+                                                }
+                                              })
+                                            }
+                                          })
+                                        }
+                                      })
+                                    }
+                                  })
+                                } else if ((result5.value >= 80) && (result5.value <= 99)) {
+                                  Swal.fire({
+                                    title: `Makasih ya, ${name}. Udah sayang sama aku ${result5.value}%`,
+                                    text: `Tambahin lagi dong sayangnya hehe`,
+                                    background: '#fff url(img/trees.png)',
+                                    backdrop: `
+                                      rgb(0 0 123 / 15%)
+                                      url("img/nyan-cat.gif")
+                                      left top
+                                      no-repeat
+                                    `,
+                                    confirmButtonText: 'OK'
+                                  }).then((result10) => {
+                                    if (result10.isConfirmed) {
+                                      Swal.fire({
+                                        title: `Sekarang, ${name} kangen ga sama aku?`,
+                                        confirmButtonText: 'Kangen :(',
+                                        showCancelButton: true,
+                                        cancelButtonText: 'Ga!',
+                                        background: '#fff url(img/trees.png)',
+                                        cancelButtonColor: '#db1825'
+                                      }).then((result11) => {
+                                        if (result11.isConfirmed) {
+                                          Swal.fire({
+                                            title: `Huhu.. aku juga kangen sama ${name} :(`,
+                                            background: '#fff url(img/trees.png)',
+                                            confirmButtonText: 'OK'
+                                          }).then((result12) => {
+                                            if (result12.isConfirmed) {
+                                              Swal.fire({
+                                                title: 'Terakhir deh sayang',
+                                                background: '#fff url(img/trees.png)',
+                                                confirmButtonText: 'OK'
+                                              }).then((result13) => {
+                                                if (result13.isConfirmed) {
+                                                  Swal.fire({
+                                                    title: `Coba sekarang ${name} klik ikon hati di bagian paling bawah`,
+                                                    background: '#fff url(img/trees.png)',
+                                                    confirmButtonText: 'OK'
+                                                  })
+                                                }
+                                              })
+                                            }
+                                          })
+                                        } else {
+                                          Swal.fire({
+                                            title: `Kok gitu sih? aku kangen banget sama ${name}, tauuu :(`,
+                                            background: '#fff url(img/trees.png)',
+                                            confirmButtonText: 'OK'
+                                          }).then((result28) => {
+                                            if (result28.isConfirmed) {
+                                              Swal.fire({
+                                                title: 'Terakhir deh sayang',
+                                                background: '#fff url(img/trees.png)',
+                                                confirmButtonText: 'OK'
+                                              }).then((result29) => {
+                                                if (result29.isConfirmed) {
+                                                  Swal.fire({
+                                                    title: `Coba sekarang ${name} klik ikon hati di bagian paling bawah`,
+                                                    background: '#fff url(img/trees.png)',
+                                                    confirmButtonText: 'OK'
+                                                  })
+                                                }
+                                              })
+                                            }
+                                          })
+                                        }
+                                      })
+                                    }
+                                  })
+                                } else if ((result5.value >= 40) && (result5.value <= 79)) {
+                                  Swal.fire({
+                                    title: `Yah, cuma ${result5.value}% :(`,
+                                    text: `${name}, aku minta disayang lebih banyak!`,
+                                    background: '#fff url(img/trees.png)',
+                                    confirmButtonText: 'OK'
+                                  }).then((result14) => {
+                                    if (result14.isConfirmed) {
+                                      Swal.fire({
+                                        title: `Sekarang, ${name} kangen ga sama aku?`,
+                                        confirmButtonText: 'Kangen :(',
+                                        showCancelButton: true,
+                                        cancelButtonText: 'Ga!',
+                                        background: '#fff url(img/trees.png)',
+                                        cancelButtonColor: '#db1825'
+                                      }).then((result15) => {
+                                        if (result15.isConfirmed) {
+                                          Swal.fire({
+                                            title: `Huhu.. aku juga kangen sama ${name} :(`,
+                                            background: '#fff url(img/trees.png)',
+                                            confirmButtonText: 'OK'
+                                          }).then((result16) => {
+                                            if (result16.isConfirmed) {
+                                              Swal.fire({
+                                                title: 'Terakhir deh sayang',
+                                                background: '#fff url(img/trees.png)',
+                                                confirmButtonText: 'OK'
+                                              }).then((result17) => {
+                                                if (result17.isConfirmed) {
+                                                  Swal.fire({
+                                                    title: `Coba sekarang ${name} klik ikon hati di bagian paling bawah`,
+                                                    background: '#fff url(img/trees.png)',
+                                                    confirmButtonText: 'OK'
+                                                  })
+                                                }
+                                              })
+                                            }
+                                          })
+                                        } else {
+                                          Swal.fire({
+                                            title: `Kok gitu sih? aku kangen banget sama ${name}, tauuu :(`,
+                                            background: '#fff url(img/trees.png)',
+                                            confirmButtonText: 'OK'
+                                          }).then((result30) => {
+                                            if (result30.isConfirmed) {
+                                              Swal.fire({
+                                                title: 'Terakhir deh sayang',
+                                                background: '#fff url(img/trees.png)',
+                                                confirmButtonText: 'OK'
+                                              }).then((result31) => {
+                                                if (result31.isConfirmed) {
+                                                  Swal.fire({
+                                                    title: `Coba sekarang ${name} klik ikon hati di bagian paling bawah`,
+                                                    background: '#fff url(img/trees.png)',
+                                                    confirmButtonText: 'OK'
+                                                  })
+                                                }
+                                              })
+                                            }
+                                          })
+                                        }
+                                      })
+                                    }
+                                  })
+                                } else {
+                                  Swal.fire({
+                                    title: `Gapapa :)`,
+                                    text: `Walau ${name} ga sayang aku, aku tetep sayang ${name}`,
+                                    background: '#fff url(img/trees.png)',
+                                    confirmButtonText: 'OK'
+                                  }).then((result18) => {
+                                    if (result18.isConfirmed) {
+                                      Swal.fire({
+                                        title: `Sekarang, ${name} kangen ga sama aku?`,
+                                        confirmButtonText: 'Kangen :(',
+                                        showCancelButton: true,
+                                        cancelButtonText: 'Ga!',
+                                        background: '#fff url(img/trees.png)',
+                                        cancelButtonColor: '#db1825'
+                                      }).then((result19) => {
+                                        if (result19.isConfirmed) {
+                                          Swal.fire({
+                                            title: `Huhu.. aku juga kangen sama ${name} :(`,
+                                            background: '#fff url(img/trees.png)',
+                                            confirmButtonText: 'OK'
+                                          }).then((result20) => {
+                                            if (result20.isConfirmed) {
+                                              Swal.fire({
+                                                title: 'Terakhir deh sayang',
+                                                background: '#fff url(img/trees.png)',
+                                                confirmButtonText: 'OK'
+                                              }).then((result21) => {
+                                                if (result21.isConfirmed) {
+                                                  Swal.fire({
+                                                    title: `Coba sekarang ${name} klik ikon hati di bagian paling bawah`,
+                                                    background: '#fff url(img/trees.png)',
+                                                    confirmButtonText: 'OK'
+                                                  })
+                                                }
+                                              })
+                                            }
+                                          })
+                                        } else {
+                                          Swal.fire({
+                                            title: `Kok gitu sih? aku kangen banget sama ${name}, tauuu :(`,
+                                            background: '#fff url(img/trees.png)',
+                                            confirmButtonText: 'OK'
+                                          }).then((result32) => {
+                                            if (result32.isConfirmed) {
+                                              Swal.fire({
+                                                title: 'Terakhir deh sayang',
+                                                background: '#fff url(img/trees.png)',
+                                                confirmButtonText: 'OK'
+                                              }).then((result33) => {
+                                                if (result33.isConfirmed) {
+                                                  Swal.fire({
+                                                    title: `Coba sekarang ${name} klik ikon hati di bagian paling bawah`,
+                                                    background: '#fff url(img/trees.png)',
+                                                    confirmButtonText: 'OK'
+                                                  })
+                                                }
+                                              })
+                                            }
+                                          })
+                                        }
+                                      })
+                                    }
+                                  })
+                                }
+                              })
+                            }
+                          })
+                        } else {
+                          Swal.fire({
+                            title: `Gapapa. aku tetep sayang sama ${name}`,
+                            text: ':)',
+                            background: '#fff url(img/trees.png)',
+                            confirmButtonText: 'OK'
+                          }).then((result22) => {
+                            if (result22.isConfirmed) {
+                              Swal.fire({
+                                title: `Sekarang, ${name} kangen ga sama aku?`,
+                                confirmButtonText: 'Kangen :(',
+                                showCancelButton: true,
+                                cancelButtonText: 'Ga!',
+                                background: '#fff url(img/trees.png)',
+                                cancelButtonColor: '#db1825'
+                              }).then((result23) => {
+                                if (result23.isConfirmed) {
+                                  Swal.fire({
+                                    title: `Huhu.. aku juga kangen sama ${name} :(`,
+                                    background: '#fff url(img/trees.png)',
+                                    confirmButtonText: 'OK'
+                                  }).then((result24) => {
+                                    if (result24.isConfirmed) {
+                                      Swal.fire({
+                                        title: 'Terakhir deh sayang',
+                                        background: '#fff url(img/trees.png)',
+                                        confirmButtonText: 'OK'
+                                      }).then((result25) => {
+                                        if (result25.isConfirmed) {
+                                          Swal.fire({
+                                            title: `Coba sekarang ${name} klik ikon hati di bagian paling bawah`,
+                                            background: '#fff url(img/trees.png)',
+                                            confirmButtonText: 'OK'
+                                          })
+                                        }
+                                      })
+                                    }
+                                  })
+                                } else {
+                                  Swal.fire({
+                                    title: `Kok gitu sih? aku kangen banget sama ${name}, tauuu :(`,
+                                    background: '#fff url(img/trees.png)',
+                                    confirmButtonText: 'OK'
+                                  }).then((result34) => {
+                                    if (result34.isConfirmed) {
+                                      Swal.fire({
+                                        title: 'Terakhir deh sayang',
+                                        background: '#fff url(img/trees.png)',
+                                        confirmButtonText: 'OK'
+                                      }).then((result35) => {
+                                        if (result35.isConfirmed) {
+                                          Swal.fire({
+                                            title: `Coba sekarang ${name} klik ikon hati di bagian paling bawah`,
+                                            background: '#fff url(img/trees.png)',
+                                            confirmButtonText: 'OK'
+                                          })
+                                        }
+                                      })
+                                    }
+                                  })
+                                }
+                              })
+                            }
+                          })
+                        }
+                      })
+                    }
+                  })()
+                }
+              })
+            }
+          })
+        }
+      })
+    })
+
+    $('#canvas').on('click', function() {
+      $('#click-me').addClass('d-block')
+      $('#click-me').addClass('d-none')
+      $('#confession').removeClass('d-none')
+      $('#confession').addClass('d-block')
+      $('#envelope').removeClass('d-none')
+      $('#envelope').addClass('d-block')
+      $('body').css('background', '#fff')
+
+      var count = 300;
+      var defaults = {
+        origin: { y: 0.8 }
+      };
+
+      function fire(particleRatio, opts) {
+        confetti(Object.assign({}, defaults, opts, {
+          particleCount: Math.floor(count * particleRatio)
+        }));
+      }
+
+      fire(0.25, {
+        spread: 26,
+        startVelocity: 55,
+      });
+      fire(0.2, {
+        spread: 60,
+      });
+      fire(0.35, {
+        spread: 180,
+        decay: 0.91,
+        scalar: 0.8
+      });
+      fire(0.1, {
+        spread: 120,
+        startVelocity: 25,
+        decay: 0.92,
+        scalar: 1.2
+      });
+      fire(0.1, {
+        spread: 120,
+        startVelocity: 45,
+      });
+    })
+  })
+</script>
+</body>
+</html>
