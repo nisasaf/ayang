@@ -48,6 +48,19 @@ body {
   background: transparent!important;
 }
 
+.swal2-close:focus {
+  box-shadow: none!important;
+}
+
+.swal2-close {
+  color: #2e2e2e!important;
+  font-weight: 600;
+  top: -10px!important;
+  right: -10px!important;
+  background-color: #edededcc!important;
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%) !important;
+}
+
 .curtain-left {
   animation-name: curtainFadeLeft;
   animation-fill-mode: both;
@@ -56,7 +69,7 @@ body {
   position: absolute; 
   height: 115vh; 
   width: 50%; 
-  background: url('img/curtain-left.jpg'); 
+  background: url('../img/curtain-left.jpg'); 
   background-repeat: no-repeat; 
   background-size: cover;
 }
@@ -70,7 +83,7 @@ body {
   height: 115vh; 
   width: 50%; 
   right: 0; 
-  background: url('img/curtain-right.jpg'); 
+  background: url('../img/curtain-right.jpg'); 
   background-repeat: no-repeat; 
   background-size: cover; 
   -webkit-transform: scaleX(-1);
@@ -78,14 +91,41 @@ body {
 }
 
 .closing-icon-delay {
-  animation-name: fadeInDown;
   animation-fill-mode: both;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-delay: 2s;
+}
+
+.envelope {
+  animation-duration: 1s;
+  animation-delay: 2s;
+}
+
+.open-here {
+  animation-duration: 1.5s;
+  animation-delay: 2.2s;
 }
 
 #closing-icon {
   font-size: 5rem;
+  cursor: pointer;
+}
+
+#closing-word {
+  font-family: 'Caveat', cursive;
+}
+
+.bg-cover {
+  background-size: cover!important;
+}
+
+.letter-color {
+  color: #e74c77!important;
+  line-height: 2!important;
+}
+
+.font-letter {
+  font-size: .8rem!important;
 }
 
 @keyframes curtainFadeLeft {

@@ -3,10 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" type="text/css" href="css/bootstrap-css/bootstrap.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <title>Untuk Ayang</title>
@@ -16,21 +21,23 @@
     <audio id="myaudio" controls autoplay loop hidden>
       <source src="music/cara-bahagia.mp3" type="audio/mp3">
     </audio>
-    <!-- <div class="curtain-left"></div>
-    <div class="curtain-right"></div> -->
+    <div id="curtain-left" class="d-none"></div>
+    <div id="curtain-right" class="d-none"></div>
     <div class="d-block button-wrapper text-center m-auto">
       <button id="click-me" class="d-block btn btn-primary btn-lg rounded-pill shadow">Klik di sini!</button>
-      <!-- <h1 id="closing-icon" class="animated fadeInDown closing-icon-delay">&#128151;</h1> -->
+      <h1 id="closing-icon" class="d-none">&#128151;</h1>
+      <h1 id="closing-word" class="d-none">Sayang banget pokoknya!</h1>
       <h2 id="confession" class="d-none mb-4 animated fadeInDown">Aku sayang kamu &#128151;</h2>
       <div id="envelope" class="d-none">
-        <a href="javascript:void(0)"><img src="img/envelope.jpg" width="80"></a>
-        <small class="d-block mt-2 fw-bold">Buka, ya!</small>
+        <a href="javascript:void(0)"><img src="img/envelope.jpg" width="80" class="shadow-sm envelope animated flipInX"></a>
+        <small class="d-block mt-2 fw-bold open-here animated zoomInDown">Buka, ya!</small>
       </div>
     </div>
   </div>
   <footer class="d-block text-center">
-      <p class="m-0">Dibuat dengan <a href="javascript:void(0)" id="canvas" class="text-decoration-none">&#128151;</a> oleh aku, untuk ayang</p>
-    </footer>
+    <p class="m-0">Dibuat dengan <a href="javascript:void(0)" id="canvas" class="text-decoration-none">&#128151;</a> oleh aku, untuk ayang</p>
+    <a href="javascript:void(0)"></a>
+  </footer>
 
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap-js/bootstrap.min.js"></script>
@@ -496,6 +503,58 @@
         spread: 120,
         startVelocity: 45,
       });
+    })
+
+    $('#envelope').on('click', function() {
+      Swal.fire({
+        title: '<div class="text-start align-items-start">Untuk Ayang</div>',
+        html: `<div>
+                <div class="text-start">
+                  <div>Hai, ayang.</div>
+                  Aku cuma mau bilang, makasih ya. Makasih karena udah jadi hitam dan putihku. Makasih udah jadi penguat aku di saat aku berada di titik-titik terendah. Makasih karena kamu masih ada di samping aku sampai detik ini. Aku ga banyak perhatian, kamu ngerti. Aku jarang untuk selalu ada, kamu ngerti. Aku jarang ungkapin perasaan, kamu ngerti.
+                </div>
+                <div class="text-start mt-2">
+                  Harusnya kamu bisa tinggalin aku. Tapi kamu memilih untuk tetap di sini. Kamu ga pernah nyerah untuk memeluk aku seutuhnya. Kamu selalu ngerti aku. Ga terlukiskan lagi betapa besar hati yang kamu punya. Aku beruntung punya kamu. 
+                </div>
+                <div class="text-start mt-2">
+                  Kamu ingat ini ya. Ini janji aku ke kamu. Kamu milik aku, aku milik kamu. Sampai akhir waktu. Aku akan selalu jagain kamu. 
+                </div>
+                <div class="text-end my-4">
+                  Dari aku, untuk ayang
+                </div>
+              </div>`,
+        customClass: {
+          title: 'pt-5 mt-2 letter-color',
+          content: 'px-5 pt-2 letter-color font-letter',
+          popup: 'bg-cover'
+        },
+        imageWidth: 400,
+        padding: '5rem 0 3rem 0',
+        imageAlt: 'Custom image',
+        background: '#fff url(img/blank-letter.png)',
+        showCloseButton: true,
+        showConfirmButton: false,
+      }).then((result_close) => {
+        console.log(result_close)
+        if (result_close.isDismissed) {
+          $('#confession').removeClass('d-block')
+          $('#confession').addClass('d-none')
+          $('#envelope').removeClass('d-block')
+          $('#envelope').addClass('d-none')
+          $('#curtain-left').removeClass('d-none')
+          $('#curtain-left').addClass('d-block curtain-left')
+          $('#curtain-right').removeClass('d-none')
+          $('#curtain-right').addClass('d-block curtain-right')
+          $('#closing-icon').removeClass('d-none')
+          $('#closing-icon').addClass('d-block animated fadeInDown closing-icon-delay')
+          $('#closing-word').removeClass('d-none')
+          $('#closing-word').addClass('d-block animated fadeInUp closing-icon-delay')
+        }
+      })
+    })
+
+    $('#curtain-right, #curtain-left, #closing-icon').on('click', function() {
+      location.reload(true)
     })
   })
 </script>
